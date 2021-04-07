@@ -1,0 +1,35 @@
+resource "oci_core_virtual_network" "tcb_vcn" {
+  cidr_block     = "10.1.0.0/16"
+  compartment_id = var.compartment_ocid
+  display_name   = "tcbVCN"
+  dns_label      = "tcbvcn"
+}
+
+resource "oci_core_subnet" "tcb_subnet" {
+  cidr_block        = "10.1.20.0/24"
+  display_name      = "tcbSubnet"
+  dns_label         = "tcbsubnet"
+  security_list_ids = [oci_core_security_list.tcb_security_list.id]
+  compartment_id    = var.compartment_ocid
+  vcn_id            = oci_core_virtual_network.tcb_vcn.id
+  route_table_id    = oci_core_route_table.tcb_route_table.id
+  dhcp_options_id   = oci_core_virtual_network.tcb_vcn.default_dhcp_options_id
+}
+
+resource "oci_core_internet_gateway" "tcb_internet_gateway" {
+  compartment_id = var.compartment_ocid
+  display_name   = "tcbIG"
+  vcn_id         = oci_core_virtual_network.tcb_vcn.id
+}
+
+resource "oci_core_route_table" "tcb_route_table" {
+  compartment_id = var.compartment_ocid
+  vcn_id         = oci_core_virtual_network.tcb_vcn.id
+  display_name   = "tcbRouteTable"
+
+  route_rules {
+    destination       = "0.0.0.0/0"
+    destination_type  = "CIDR_BLOCK"
+    network_entity_id = oci_core_internet_gateway.tcb_internet_gateway.id
+  }
+}

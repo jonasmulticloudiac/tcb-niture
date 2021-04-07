@@ -1,10 +1,10 @@
 # Local .terraform directories
 **/.terraform/*
-
+**/auth/*
 # .tfstate files
 *.tfstate
 *.tfstate.*
-
+**/pacotes/*
 # Crash log files
 crash.log
 
