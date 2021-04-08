@@ -34,7 +34,7 @@ resource "null_resource" "web-install" {
     type        = "ssh"
     user        = "ocp"
     password    = ""
-    host        =  oci_core_instance.webserver1.assign_public_ip
+    host        =  oci_core_instance.webserver1.public_ip
     private_key = var.ssh_public_key
 
   }
