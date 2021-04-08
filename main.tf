@@ -5,7 +5,7 @@ data "oci_identity_availability_domain" "ad" {
 
 
 
-resource "oci_core_instance" "webserver" {
+resource "oci_core_instance" "webserver1" {
   availability_domain = data.oci_identity_availability_domain.ad.name
   compartment_id      = var.compartment_ocid
   display_name        = "webserver1"
@@ -15,7 +15,7 @@ resource "oci_core_instance" "webserver" {
     subnet_id        = oci_core_subnet.tcb_subnet.id
     display_name     = "vnicwebserver1"
     assign_public_ip = true
-    hostname_label   = ""webserver1"
+    hostname_label   = "webserver1"
   }
 
   source_details {
