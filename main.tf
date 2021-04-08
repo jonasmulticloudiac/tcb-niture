@@ -33,8 +33,8 @@ resource "null_resource" "web-install" {
 
   connection {
     type        = "ssh"
-    user        = "ocp"
-    host        =  oci_core_instance.webserver1.public_ip
+    user        = "opc"
+    host        = oci_core_instance.webserver1.public_ip
     private_key = var.ssh_private_key
 
   }
