@@ -6,7 +6,7 @@ data "oci_identity_availability_domain" "ad" {
 
 
 resource "oci_core_instance" "webserver" {
-  count               = var.numVm
+  count               = var.numVM
   availability_domain = data.oci_identity_availability_domain.ad.name
   compartment_id      = var.compartment_ocid
   display_name        = "webserver${count.index}"

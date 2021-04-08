@@ -1,9 +1,3 @@
-locals {
-  # Set this initially to 3, then increased it to 4
-  numVM = "2"
-}
-
-
 resource "null_resource" "web-install" {
   depends_on    = [oci_core_instance.webserver,]
   
