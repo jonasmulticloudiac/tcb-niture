@@ -31,9 +31,10 @@ resource "oci_load_balancer_listener" "tcbLoadBalancerListener" {
 
 
 resource "oci_load_balancer_backend" "tcbLoadBalancerBackend" {
+  for_each            = var.instance_variables
   load_balancer_id = oci_load_balancer.tcbLoadBalancer.id
   backendset_name  = oci_load_balancer_backendset.tcbLoadBalancerBackendset.name
-  ip_address       = "${element(oci_core_instance.webserver.*.private_ip, count.index)}"
+  ip_address       = "element(oci_core_instance.webserver.*.private_ip, each.value)"
   port             = 80 
   backup           = false
   drain            = false
