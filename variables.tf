@@ -7,7 +7,9 @@ variable "private_key" {}
 variable "ssh_public_key" {}
 variable "ssh_private_key" {}
 
-
+variable "numVM" {
+  default = "1"
+}
 
 variable "ad_region_mapping" {
   type = map(string)

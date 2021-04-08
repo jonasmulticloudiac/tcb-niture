@@ -1,16 +1,17 @@
 
 resource "null_resource" "web-install" {
-  depends_on = [oci_core_instance.webserver1]
-
-  connection {
-    type        = "ssh"
-    user        = "opc"
-    host        = oci_core_instance.webserver1.public_ip
-    private_key = var.ssh_private_key
-
-  }
+  depends_on    = [oci_core_instance.webserver]
 
   provisioner "remote-exec" {
+
+    connection {
+      type        = "ssh"
+      user        = "opc"
+      host        = oci_core_instance.webserver[count.index % var.numVM].public_ip
+      private_key = var.ssh_private_key
+
+    }
+
     inline = [
       "while [ ! -f /var/lib/cloud/instance/boot-finished ]; do echo 'Aguarde finalizando a VM...'; sleep 1; done",
       "sudo yum install httpd -y",
