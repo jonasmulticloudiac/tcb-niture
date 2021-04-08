@@ -8,15 +8,6 @@ variable "ssh_public_key" {}
 variable "ssh_private_key" {}
 
 
-variable "instance_variables" {
-  description = "Map instance name to hostname"
-  default = {
-    "ForEach1" = "fe-1"
-    "ForEach2" = "fe-2"
-  }
-}
-
-
 variable "ad_region_mapping" {
   type = map(string)
 

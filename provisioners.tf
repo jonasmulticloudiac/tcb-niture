@@ -1,14 +1,12 @@
 resource "null_resource" "web-install" {
-  depends_on    = [oci_core_instance.webserver,]
+  depends_on    = [oci_core_instance.webserver1,]
   
-for_each            = var.instance_variables 
-
   provisioner "remote-exec" {
 
     connection {
       type        = "ssh"
       user        = "opc"
-      host        = oci_core_instance.webserver[each.key].public_ip
+      host        = oci_core_instance.webserver1.public_ip
       private_key = var.ssh_private_key
 
     }
