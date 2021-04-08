@@ -14,7 +14,7 @@ resource "oci_core_instance" "webserver1" {
   display_name        = "webserver1"
   shape               = "VM.Standard.E2.1.Micro"
 
-  user_data           = data.template_file.init.rendered
+  user_data = data.template_file.init.rendered
 
   create_vnic_details {
     subnet_id        = oci_core_subnet.tcb_subnet.id
@@ -30,11 +30,8 @@ resource "oci_core_instance" "webserver1" {
 
   metadata = {
     ssh_authorized_keys = var.ssh_public_key
-    user_data = "${base64encode(file("./setup.sh"))}"
+    user_data           = "${base64encode(file("./setup.sh"))}"
   }
 
-
-
-  }
 }
 
