@@ -1,3 +1,7 @@
+resource "tls_private_key" "public_private_key_pair" {
+  algorithm   = "RSA"
+}
+
 data "oci_identity_availability_domain" "ad" {
   compartment_id = var.tenancy_ocid
   ad_number      = var.ad_region_mapping[var.region]
@@ -22,9 +26,11 @@ resource "oci_core_instance" "webserver1" {
     source_id   = var.images[var.region]
   }
 
-  metadata = {
-    ssh_authorized_keys = var.ssh_public_key
+
+   extended_metadata {
+    ssh_authorized_keys = "${tls_private_key.public_private_key_pair.public_key_openssh}"
   }
+
 }
 
 
@@ -33,10 +39,8 @@ resource "null_resource" "web-install" {
   connection {
     type        = "ssh"
     user        = "ocp"
-    password    = ""
     host        =  oci_core_instance.webserver1.public_ip
-    private_key = var.ssh_private_key
-
+    private_key = "${tls_private_key.public_private_key_pair.private_key_pem}"
   }
 
   provisioner "remote-exec" {
