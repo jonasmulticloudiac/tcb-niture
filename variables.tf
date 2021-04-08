@@ -8,6 +8,20 @@ variable "ssh_public_key" {}
 variable "ssh_private_key" {}
 
 
+variable "qtdevm" { 
+  default = "2"
+}
+
+variable iplb {
+  default = "8.8.8.8"
+}
+
+
+variable "domain" {
+ default = "oci.pracimabootcampers.online"
+}
+
+
 variable "ad_region_mapping" {
   type = map(string)
 

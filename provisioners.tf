@@ -1,9 +1,10 @@
 resource "null_resource" "web-install" {
-  depends_on = [oci_core_instance.webserver1]
+  count =  var.qtdevm
+
   connection {
     type        = "ssh"
     user        = "opc"
-    host        = oci_core_instance.webserver1.public_ip
+    host        = element(oci_core_instance.webserver.*.public_ip, count.index)
     private_key = var.ssh_private_key
 
   }

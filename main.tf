@@ -4,17 +4,18 @@ data "oci_identity_availability_domain" "ad" {
 }
 
 
-resource "oci_core_instance" "webserver1" {
+resource "oci_core_instance" "webserver" {
+  count =  var.qtdevm
   availability_domain = data.oci_identity_availability_domain.ad.name
   compartment_id      = var.compartment_ocid
-  display_name        = "webserver1"
+  display_name        = "webserver${count.index}"
   shape               = "VM.Standard.E2.1.Micro"
 
   create_vnic_details {
     subnet_id        = oci_core_subnet.tcb_subnet.id
-    display_name     = "vnicwebserver1"
+    display_name     = "nicwebserver${count.index}"
     assign_public_ip = true
-    hostname_label   = "webserver1"
+    hostname_label   = "webserver${count.index}"
   }
 
   source_details {
