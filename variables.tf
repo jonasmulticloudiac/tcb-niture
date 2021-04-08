@@ -5,6 +5,8 @@ variable "user_ocid" {}
 variable "fingerprint" {}
 variable "private_key" {}
 variable "ssh_public_key" {}
+variable "ssh_private_key" {}
+
 
 
 variable "ad_region_mapping" {
