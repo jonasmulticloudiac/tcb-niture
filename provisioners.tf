@@ -1,5 +1,6 @@
 
 resource "null_resource" "web-install" {
+  depends_on = [oci_core_instance.webserver1]
 
   connection {
     type        = "ssh"
@@ -24,7 +25,7 @@ resource "null_resource" "web-install" {
       "sudo systemctl start httpd",
       "sudo sleep 2",
       "sudo systemctl enable httpd",
-  
+
     ]
   }
 }
