@@ -13,7 +13,7 @@ variable "qtdevm" {
 }
 
 variable iplb {
-  default = "8.8.8.8"
+  default = "132.226.247.9"
 }
 
 
