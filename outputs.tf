@@ -1,6 +1,6 @@
-# output "ips_VMS" {
-#   value = [oci_core_instance.webserver.*.public_ip]
-# }
+output "ips_VMS" {
+   value = [oci_core_instance.webserver1.public_ip]
+}
 
 
 # output "public_ip_LB" {

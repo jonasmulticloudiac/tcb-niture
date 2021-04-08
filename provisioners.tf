@@ -1,6 +1,5 @@
 resource "null_resource" "web-install" {
   depends_on = [oci_core_instance.webserver1]
-
   connection {
     type        = "ssh"
     user        = "opc"
