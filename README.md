@@ -2,12 +2,16 @@
 - Terraform Cloud - explorando possibilidades - #TheCloudBootcamp
 __Objetivo: __
 >  Criar Virtuais Machine e escalar de acordo com a necessidade - { Alterar a variavel qtdevm no arquivo variables }
+>  
 >  Criar LoadBalancer e associa-lo as vms criadas 
+>  
 >  Criar Escopo de Rede { gateway | redes | sub-nets | routers |  firewall }
+>  
 >  Provisionar a aplicação e realizar os ajustes necessários no momento do deploy
-> ** Criação da Zona de Dns e associação ao dominio publico. 
+>  
+> Criação da Zona de Dns e associação ao dominio publico. 
 
-##** Variaveis de ambiente devem ser criadas no Terraform Cloud e atribuidas com os seus respectivos valores
+## Variaveis de ambiente devem ser criadas no Terraform Cloud e atribuidas com os seus respectivos valores
 - variable "compartment_ocid" {}
 - variable "region" {}
 - variable "tenancy_ocid" {}
