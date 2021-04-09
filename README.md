@@ -1,6 +1,6 @@
 # Oracle Cloud - OCI :  tcb-niture -
 ## Terraform Cloud - explorando possibilidades - @TheCloudBootcamp
-__Objetivo: __
+__Objetivo:__
 >  Criar Virtuais Machine e escalar de acordo com a necessidade - { Alterar a variavel qtdevm no arquivo variables }
 >  
 >  Criar LoadBalancer e associa-lo as vms criadas 
