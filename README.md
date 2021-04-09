@@ -11,7 +11,7 @@ __Objetivo:__
 >  
 > Criação da Zona de Dns e associação ao dominio publico. 
 
-## Variaveis de ambiente devem ser criadas no Terraform Cloud e atribuidas com os seus respectivos valores
+## Variáveis de ambiente devem ser criadas no Terraform Cloud e atribuídas com os seus respectivos valores
 - variable "compartment_ocid" {}
 - variable "region" {}
 - variable "tenancy_ocid" {}
